@@ -5,6 +5,7 @@ Big Data group project covering Fraud data using Java
 - Devin Ingersoll
 - Seth Bennett
 - Dylan Opoka
+- Enid Maharjan
 ## Subtopics
 - [IEEE CIS Fraud](https://www.kaggle.com/niangmohamed/ieeecis-fraud-detection)
 - [Ethereum Fraud Detection Dataset](https://www.kaggle.com/vagifa/ethereum-frauddetection-dataset)
