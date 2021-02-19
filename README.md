@@ -11,6 +11,7 @@ Big Data group project covering Fraud data using Java
 ## Setup / Going through the code
 
 ## Writing a Real Application v1
+  Link to Dylan Opoka's Demonstration: 
 
 ## v2 State + Time = ❤️
 
