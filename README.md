@@ -17,3 +17,6 @@ Big Data group project covering Fraud data using Java
 ## Pulling in Data from other sources
 
 ## Another Data source
+
+## Sources
+[Fraud Detection with the DataStream API](https://ci.apache.org/projects/flink/flink-docs-stable/try-flink/datastream_api.html)
