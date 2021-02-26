@@ -51,7 +51,7 @@ Run Program
 ./bin/flink run ../temp/frauddetection/target/frauddetection-0.1.jar
 ```
 ## Writing a Real Application v1
-  Link to Dylan Opoka's Demonstration: 
+  Link to Dylan Opoka's Demonstration:
 
 ## v2 State + Time = ❤️
 
@@ -73,22 +73,22 @@ DataSet<Tuple2<Double, String>> transaction = env.readCsvFile("file:///FraudData
   .includeFields("00110000000") // this takes in columns 3 (amount) and 4 (nameOrig)
   .types(Double.class, String.class);
 ```
-  - ~~.includeFields("01")~~ is used to specify which columns of the CSV to parse, we are parsing columns 3 and 4 out of the 11. These are stored as a Tuple as a Double and a String
+  - `.includeFields("01")` is used to specify which columns of the CSV to parse, we are parsing columns 3 and 4 out of the 11. These are stored as a Tuple as a Double and a String
 
 - Now we need to change FraudDetector.java as well
-  - We need to remove each use of ~~Transaction~~ and replace it with reading in our Tuple2
+  - We need to remove each use of `Transaction` and replace it with reading in our Tuple2
 ```Java
 final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
 public void processElement(Tuple2<Double, String> transaction, ... )
 ```
 - We are going to want to change the DataStream<Transaction> lines to be DataSet<String>
-  - We also are going to need to change how transaction is called so for each ~~transaction.getAmount()~~ we replace with ~~transaction.f0~~ (.f0 is our first value in the Tuple2 while .f1 is the second).  Similarly, ~~transaction.getAccountId()~~ is replaced with ~~transaction.f1~~
+  - We also are going to need to change how transaction is called so for each `transaction.getAmount()` we replace with `transaction.f0` (.f0 is our first value in the Tuple2 while .f1 is the second).  Similarly, `transaction.getAccountId()` is replaced with `transaction.f1`
 
 ##### [NOTE] you need to include these imports in your two .java files
-~~~Java
+```Java
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.ExecutionEnvironment;
-~~~
+```
 
 link to Devin's video:
 ## Another Data source
