@@ -11,7 +11,7 @@ Big Data group project covering Fraud data using Java
 ## Setup / Going through the code
 
 
-[Link to My Video]()
+[Link to My Video](https://youtu.be/Ar6iEwQcnvY)
 
 ### Software download links
 [VMWare](https://my.vmware.com/en/web/vmware/downloads/details?downloadGroup=WKST-1610-WIN&productId=1038&rPId=55777)
