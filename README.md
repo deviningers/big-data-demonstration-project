@@ -16,7 +16,7 @@ Big Data group project covering Fraud data using Java
 ### Software download links
 [VMWare](https://my.vmware.com/en/web/vmware/downloads/details?downloadGroup=WKST-1610-WIN&productId=1038&rPId=55777)
  - [Free VMWare Keys from GitHub](https://gist.github.com/gopalindians/ec3f3076f185b98353f514b26ed76507)
- - [Unbuntu](https://ubuntu.com/download/desktop)
+ - [Ubuntu](https://ubuntu.com/download/desktop)
 ## Writing a Real Application v1
   Link to Dylan Opoka's Demonstration: 
 
