@@ -25,7 +25,26 @@ Maven and Java Download commands
 sudo apt-get install maven -y
 sudo apt-get install openjdk-11-jdk -y
 ```
+Base Fraud Detection program
+```Bash
+mvn archetype:generate \
+    -DarchetypeGroupId=org.apache.flink \
+    -DarchetypeArtifactId=flink-walkthrough-datastream-java \
+    -DarchetypeVersion=1.12.1 \
+    -DgroupId=frauddetection \
+    -DartifactId=frauddetection \
+    -Dversion=0.1 \
+    -Dpackage=spendreport \
+    -DinteractiveMode=false
+```
+Start/stop flink clusters
+```Bash
 
+```
+Run Program
+```Bash
+
+```
 ## Writing a Real Application v1
   Link to Dylan Opoka's Demonstration: 
 
