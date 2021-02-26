@@ -37,13 +37,18 @@ mvn archetype:generate \
     -Dpackage=spendreport \
     -DinteractiveMode=false
 ```
+Package maven file
+```Bash
+mvn package
+```
 Start/stop flink clusters
 ```Bash
-
+./bin/start-cluster.sh
+./bin/stop-cluster.sh
 ```
 Run Program
 ```Bash
-
+./bin/flink run ../temp/frauddetection/target/frauddetection-0.1.jar
 ```
 ## Writing a Real Application v1
   Link to Dylan Opoka's Demonstration: 
