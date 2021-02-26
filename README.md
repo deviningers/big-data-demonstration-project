@@ -3,7 +3,7 @@ Big Data group project covering Fraud data using Java
 
 ### Group
 - Devin Ingersoll
-- Seth Bennett
+- Seth Bennett ->Setup / Going through the code
 - Dylan Opoka
 - Enid Maharjan
 - Rajeev Chapagain
@@ -11,7 +11,7 @@ Big Data group project covering Fraud data using Java
 ## Setup / Going through the code
 
 
-
+[Link to My Video]()
 
 ### Software download links
 [VMWare](https://my.vmware.com/en/web/vmware/downloads/details?downloadGroup=WKST-1610-WIN&productId=1038&rPId=55777)
