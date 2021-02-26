@@ -19,8 +19,13 @@ Big Data group project covering Fraud data using Java
  - [Ubuntu](https://ubuntu.com/download/desktop)
 
 [Flink](https://flink.apache.org/downloads.html#apache-flink-1121)
+### Useful Commands
+Maven and Java Download commands
+```Bash
+sudo apt-get install maven -y
+sudo apt-get install openjdk-11-jdk -y
+```
 
-![Script to install maven and java](MavenJavaDownload.sh)
 ## Writing a Real Application v1
   Link to Dylan Opoka's Demonstration: 
 
