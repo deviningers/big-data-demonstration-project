@@ -55,7 +55,7 @@ Run Program
 
 ## v2 State + Time = ❤️
 
-## Pulling in Data from other sources
+## Pulling in Data from Other Sources
 - So now that we have a working program that can detect fraud, lets modify it so that we can pull in actual data sources.
 - The first thing we are going to change is the execution environment from the default streaming env
 - So now that we have a working program that can detect fraud, lets modify it so that we can pull in actual data sources, in this case a CSV (Comma Separated Value file)
