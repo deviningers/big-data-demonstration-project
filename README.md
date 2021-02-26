@@ -90,7 +90,8 @@ import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.ExecutionEnvironment;
 ```
 
-link to Devin's video:
+[Devin's video](https://use.vg/BRl4Iv)
+
 ## Another Data source
 
 ## Sources
