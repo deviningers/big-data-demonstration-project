@@ -84,7 +84,9 @@ Run Program
         }
    ```
    We also need to clear the flagState, because if the transaction was not large, then the flag will be reset and if it was large, an alert has already been created.
-   `flagState.clear();`
+   ```
+   flagState.clear();
+   ```
    
    Lastly, we check if a transaction is small once again to see if the flag needs to be reset.
    ```
