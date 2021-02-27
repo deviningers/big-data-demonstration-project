@@ -96,7 +96,7 @@ Run Program
     }
    ```
    
-  Link to Dylan Opoka's Demonstration:
+  [Dylan's Demonstration](https://app.vidgrid.com/view/AeenTWPg9Ovo)
 
 ## v2 State + Time = ❤️
 
