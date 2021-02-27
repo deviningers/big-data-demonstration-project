@@ -51,6 +51,49 @@ Run Program
 ./bin/flink run ../temp/frauddetection/target/frauddetection-0.1.jar
 ```
 ## Writing a Real Application v1
+  For my demonstation, we will be going through part of the fraud detection program, and learn about what goes into a fraud detection application.
+  
+  For our example, we want our fraud detector to send or create an alert every time we have a small transaction(>$1) followed by a large transaction(<$500). For this to happen, we will need to remember previous transactions and whether they were small or not, so we will use a KeyedProcessFunction, which will help us remember the state of our transactions. We will do this using a ValueState, which will keep track of whether or not a specific account, identified by the keyby() function. 
+  Creating the ValueState to keep track of our account flags will be written as follows:
+  
+  ``` private transient ValueState<Boolean> flagState;```
+  
+  We will create a ValueStateDescriptor, which is used to create the valueState variable:
+  
+  ```
+  public void open(Configuration parameters) {
+        ValueStateDescriptor<Boolean> flagDescriptor = new ValueStateDescriptor<>(
+                "flag",
+                Types.BOOLEAN);
+        flagState = getRuntimeContext().getState(flagDescriptor);
+    }
+   ```
+   ValueState has three methods that we will use: update, value, and clear. Update will set the state of the variable, value will return the current value of the variable, and clear will remove the contents of the variable to null. 
+   Now, we can go into how to use the ValueState to monitor our transactions. To get the current state of the key, we will create a boolean that keeps track of the flagState:
+   `Boolean lastTransactionWasSmall = flagState.value();`
+   Then, we will check whether the flag has been set by the last transaction. If it has, we then check the next transaction to see if it was a large transaction. If so, an alert is created for the transaction and account ID and logged.
+   
+   ```
+   if (lastTransactionWasSmall != null) {
+        if (transaction.getAmount() > LARGE_AMOUNT) {
+            // Output an alert downstream
+            Alert alert = new Alert();
+            alert.setId(transaction.getAccountId());
+
+            collector.collect(alert);            
+        }
+   ```
+   We also need to clear the flagState, because if the transaction was not large, then the flag will be reset and if it was large, an alert has already been created.
+   `flagState.clear();`
+   
+   Lastly, we check if a transaction is small once again to see if the flag needs to be reset.
+   ```
+   if (transaction.getAmount() < SMALL_AMOUNT) {
+        // Set the flag to true
+        flagState.update(true);
+    }
+   ```
+   
   Link to Dylan Opoka's Demonstration:
 
 ## v2 State + Time = ❤️
