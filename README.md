@@ -99,6 +99,68 @@ Run Program
   [Dylan's Demonstration](https://app.vidgrid.com/view/AeenTWPg9Ovo)
 
 ## v2 State + Time = ❤️
+Scammers will not wait long to complete their bulk purchases to reduce the chance of their test transactions being noticed. For example if we set a 1 minute time out to our fraud detector, the transactions are only considered fraud if they occur within 1 minute.  Flink’s KeyedProcessFunction allows you to set timers which invoke a callback method at some point in time in the future.
+
+Let’s see how we can modify our Job to comply with our new requirements:
+- Whenever the flag is set to true, also set a timer for 1 minute in the future.
+- When the timer fires, reset the flag by clearing its state.
+- If the flag is ever cleared the timer should be canceled.
+
+To cancel a timer, you have to remember what time it is set for, and remembering implies state, so you will begin by creating a timer state along with your flag state.
+```
+private transient ValueState<Boolean> flagState;
+private transient ValueState<Long> timerState;
+
+@Override
+public void open(Configuration parameters) {
+    ValueStateDescriptor<Boolean> flagDescriptor = new ValueStateDescriptor<>(
+            "flag",
+            Types.BOOLEAN);
+    flagState = getRuntimeContext().getState(flagDescriptor);
+
+    ValueStateDescriptor<Long> timerDescriptor = new ValueStateDescriptor<>(
+            "timer-state",
+            Types.LONG);
+    timerState = getRuntimeContext().getState(timerDescriptor);
+}
+```
+
+KeyedProcessFunction#processElement is called with a Context that contains a timer service. The timer service can be used to query the current time, register timers, and delete timers. With this, you can set a timer for 1 minute in the future every time the flag is set and store the timestamp in timerState.
+```
+if (transaction.getAmount() < SMALL_AMOUNT) {
+    // set the flag to true
+    flagState.update(true);
+
+    // set the timer and timer state
+    long timer = context.timerService().currentProcessingTime() + ONE_MINUTE;
+    context.timerService().registerProcessingTimeTimer(timer);
+    timerState.update(timer);
+}
+```
+
+Processing time is wall clock time, and is determined by the system clock of the machine running the operator.
+When a timer fires, it calls KeyedProcessFunction#onTimer. Overriding this method is how you can implement your callback to reset the flag.
+```
+@Override
+public void onTimer(long timestamp, OnTimerContext ctx, Collector<Alert> out) {
+    // remove flag after 1 minute
+    timerState.clear();
+    flagState.clear();
+}
+```
+
+Finally, to cancel the timer, you need to delete the registered timer and delete the timer state. You can wrap this in a helper method and call this method instead of flagState.clear().
+```
+private void cleanUp(Context ctx) throws Exception {
+    // delete timer
+    Long timer = timerState.value();
+    ctx.timerService().deleteProcessingTimeTimer(timer);
+
+    // clean up all state
+    timerState.clear();
+    flagState.clear();
+}
+```
 
 ## Pulling in Data from Other Sources
 - So now that we have a working program that can detect fraud, lets modify it so that we can pull in actual data sources.
