@@ -1,12 +1,15 @@
 # Fraud Detection using Java and Apache Flink
 Big Data group project covering Fraud data using Java
 
+## Watch videos in the following Order
+Furthermore, The document is arranged in a top to bottom style
+
 ### Group
-- Devin Ingersoll
-- Seth Bennett ->Setup / Going through the code
-- Dylan Opoka
-- Enid Maharjan
-- Rajeev Chapagain
+- 1.Seth Bennett ->Setup / Going through the code
+- 2.Devin Ingersoll(Team Lead) ->Pulling in Data from Other Sources
+- 3.Dylan Opoka ->Writing a Real Application v1
+- 4.Enid Maharjan ->v2 State + Time = ❤️
+- 5.Rajeev Chapagain ->Another Data source
 
 ## Setup / Going through the code
 
@@ -51,6 +54,8 @@ Run Program
 ./bin/flink run ../temp/frauddetection/target/frauddetection-0.1.jar
 ```
 ## Writing a Real Application v1
+[Dylan's Demonstration](https://app.vidgrid.com/view/AeenTWPg9Ovo)
+
   For my demonstation, we will be going through part of the fraud detection program, and learn about what goes into a fraud detection application.
   
   For our example, we want our fraud detector to send or create an alert every time we have a small transaction(>$1) followed by a large transaction(<$500). For this to happen, we will need to remember previous transactions and whether they were small or not, so we will use a KeyedProcessFunction, which will help us remember the state of our transactions. We will do this using a ValueState, which will keep track of whether or not a specific account, identified by the keyby() function. 
@@ -96,9 +101,11 @@ Run Program
     }
    ```
    
-  [Dylan's Demonstration](https://app.vidgrid.com/view/AeenTWPg9Ovo)
+  
 
 ## v2 State + Time = ❤️
+[Enid's video](https://use.vg/JBwca9)
+
 Scammers will not wait long to complete their bulk purchases to reduce the chance of their test transactions being noticed. For example if we set a 1 minute time out to our fraud detector, the transactions are only considered fraud if they occur within 1 minute.  Flink’s KeyedProcessFunction allows you to set timers which invoke a callback method at some point in time in the future.
 
 Let’s see how we can modify our Job to comply with our new requirements:
@@ -162,9 +169,11 @@ private void cleanUp(Context ctx) throws Exception {
 }
 ```
 
-[Enid's video](https://use.vg/JBwca9)
+
 
 ## Pulling in Data from Other Sources
+[Devin's video](https://use.vg/BRl4Iv)
+
 - So now that we have a working program that can detect fraud, lets modify it so that we can pull in actual data sources.
 - The first thing we are going to change is the execution environment from the default streaming env
 - So now that we have a working program that can detect fraud, lets modify it so that we can pull in actual data sources, in this case a CSV (Comma Separated Value file)
@@ -199,7 +208,7 @@ import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.ExecutionEnvironment;
 ```
 
-[Devin's video](https://use.vg/BRl4Iv)
+
 
 ## Another Data source
 
