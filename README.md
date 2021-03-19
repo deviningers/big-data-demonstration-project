@@ -6,9 +6,9 @@ Furthermore, The document is arranged in a top to bottom style
 
 ### Group
 - 1.Seth Bennett ->Setup / Going through the code
-- 2.Devin Ingersoll(Team Lead) ->Pulling in Data from Other Sources
-- 3.Dylan Opoka ->Writing a Real Application v1
-- 4.Enid Maharjan ->v2 State + Time = ❤️
+- 2.Dylan Opoka ->Writing a Real Application v1
+- 3.Enid Maharjan ->v2 State + Time = ❤️
+- 4.Devin Ingersoll(Team Lead) ->Pulling in Data from Other Sources
 - 5.Rajeev Chapagain ->Another Data source
 
 ## Setup / Going through the code
